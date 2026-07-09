@@ -1,0 +1,13 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Local working files
+*.tmp
+*.bak
+
+# Backup artifacts produced by the installer / uninstaller
+*.backup.*
