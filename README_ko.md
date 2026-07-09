@@ -1,6 +1,8 @@
 # OpenCode for Termux
 
-![OpenCode for Termux 배너](assets/banner.png)
+<p align="center">
+  <img src="assets/banner.png" alt="OpenCode for Termux 배너" width="768">
+</p>
 
 이 스크립트는 Android Termux 전용입니다. 공식 npm 레지스트리에서 [OpenCode](https://github.com/sst/opencode)를 설치하고 Termux `aarch64`에서 실행하는 데 필요한 호환성 패치를 적용합니다.
 

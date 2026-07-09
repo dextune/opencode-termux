@@ -1,6 +1,8 @@
 # OpenCode for Termux
 
-![OpenCode for Termux banner](assets/banner.png)
+<p align="center">
+  <img src="assets/banner.png" alt="OpenCode for Termux banner" width="768">
+</p>
 
 This script is for Android Termux only. It installs [OpenCode](https://github.com/sst/opencode) from the official npm registry and applies the compatibility patches required to run it on Termux `aarch64`.
 
