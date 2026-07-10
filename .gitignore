@@ -11,3 +11,6 @@ Thumbs.db
 
 # Backup artifacts produced by the installer / uninstaller
 *.backup.*
+
+# Personal version-update runbook (not for the public repo)
+UPDATE.md
