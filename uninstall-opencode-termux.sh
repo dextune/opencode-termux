@@ -8,12 +8,12 @@ set -eu
 # under ~/.local/share/opencode (logs, sessions, repos) is preserved.
 #
 # VERSION FREEZE
-#   This uninstaller is frozen for opencode-ai 1.17.18 (the same build
+#   This uninstaller is frozen for opencode-ai 1.18.2 (the same build
 #   installed by install-opencode-termux.sh). It will not silently target
 #   a different upstream version. The actual freeze check lives below,
 #   right after `fail()` is defined.
 
-FROZEN_VERSION="1.17.18"
+FROZEN_VERSION="1.18.2"
 PLATFORM_PKG="opencode-linux-arm64"
 REMOVE_USER_DATA="${REMOVE_USER_DATA:-0}"
 FORCE="${FORCE:-0}"

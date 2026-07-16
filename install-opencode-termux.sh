@@ -24,16 +24,16 @@ set -eu
 #      `LD_PRELOAD` / `LD_LIBRARY_PATH` and execs the patched binary.
 #
 # VERSION FREEZE
-#   This installer is frozen for opencode-ai 1.17.18. The binary patches
+#   This installer is frozen for opencode-ai 1.18.2. The binary patches
 #   (ELF interpreter path, file descriptor wiring, etc.) only apply to
-#   the exact build of `opencode-linux-arm64@1.17.18`. Newer or older
+#   the exact build of `opencode-linux-arm64@1.18.2`. Newer or older
 #   versions can have a different ELF layout, glibc requirements, or
 #   `postinstall.mjs` resolution logic that this script does not handle.
 #   When upgrading to a new upstream release, re-validate every patch on
 #   the new binary before publishing a new installer. The actual freeze
 #   check lives below, right after `fail()` is defined.
 
-FROZEN_VERSION="1.17.18"
+FROZEN_VERSION="1.18.2"
 PLATFORM_PKG="opencode-linux-arm64"
 
 PREFIX="${PREFIX:-/data/data/com.termux/files/usr}"

@@ -4,12 +4,12 @@ This document describes the compatibility changes applied by `install-opencode-t
 
 ## Version status
 
-- Completed target version: `1.17.18`
-- npm umbrella package: `opencode-ai@1.17.18`
-- npm platform binary: `opencode-linux-arm64@1.17.18`
+- Completed target version: `1.18.2`
+- npm umbrella package: `opencode-ai@1.18.2`
+- npm platform binary: `opencode-linux-arm64@1.18.2`
 - Runtime target: Android Termux `aarch64` with Termux glibc support
 
-This installer is **frozen** at `1.17.18`. There is no `VERSION` override and no plan to publish a generic installer that picks a "latest" tag. Why is captured in the next section.
+This installer is **frozen** at `1.18.2`. There is no `VERSION` override and no plan to publish a generic installer that picks a "latest" tag. Why is captured in the next section.
 
 ## Scope
 
@@ -105,10 +105,10 @@ The installer verifies:
 
 - Node.js >= 18 is available
 - `glibc-runner` and `patchelf-glibc` are installed
-- `opencode-ai@1.17.18` and `opencode-linux-arm64@1.17.18` are installed in the global npm prefix
+- `opencode-ai@1.18.2` and `opencode-linux-arm64@1.18.2` are installed in the global npm prefix
 - the platform package's binary exists and is executable
 - `patchelf --print-interpreter` reports the Termux glibc loader path
-- `opencode --version` reports `1.17.18`
+- `opencode --version` reports `1.18.2`
 
 Manual checks:
 
@@ -124,7 +124,7 @@ Expected output (final line is the OpenCode response, which depends on the confi
 
 ```text
 /data/data/com.termux/files/usr/bin/opencode
-1.17.18
+1.18.2
 /data/data/com.termux/files/usr/glibc/lib/ld-linux-aarch64.so.1
 Hi.
 ```
@@ -145,13 +145,13 @@ The `--ignore-scripts` + manual copy pattern is the load-bearing trick: as long 
 
 Because every byte-level patch in this repository (the ELF interpreter path string, the `glibc-loader` runtime location, the file-descriptor wiring inside the launcher, etc.) was validated against a specific build of the binary, this installer is intentionally frozen at a single release:
 
-- `opencode-ai@1.17.18`
-- `opencode-linux-arm64@1.17.18`
+- `opencode-ai@1.18.2`
+- `opencode-linux-arm64@1.18.2`
 
 The script does not expose a `VERSION` knob. If a future OpenCode release changes any of the points listed in section 6, this installer will either silently fail or, worse, appear to succeed while producing a binary that does not actually run. Neither outcome is acceptable, so the policy is:
 
 1. The installer hard-codes the supported version as `FROZEN_VERSION` and aborts if `VERSION` is set to anything else.
 2. The README's "Change version" section describes the manual steps required to re-validate and re-publish the installer for a new release.
-3. Until those steps are completed for a new upstream version, the right way to install OpenCode on Termux is to stay on `1.17.18`.
+3. Until those steps are completed for a new upstream version, the right way to install OpenCode on Termux is to stay on `1.18.2`.
 
 This is the same trade-off the Termux glibc binary itself makes: the loader at `/data/data/com.termux/files/usr/glibc/lib/ld-linux-aarch64.so.1` does not change shape every time a new package is published. Pin the dependencies, audit the boundaries, then commit to the result.

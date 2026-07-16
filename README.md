@@ -22,7 +22,7 @@ sh ./install-opencode-termux.sh
 OpenCode for Termux
 Compatibility installer for Android/aarch64
 
-Target version : 1.17.18
+Target version : 1.18.2
 Platform       : opencode-linux-arm64
 Install path   : .../share/opencode/bin/opencode
 Launcher       : .../usr/bin/opencode
@@ -32,22 +32,22 @@ Launcher       : .../usr/bin/opencode
 
 This installer is **frozen for a single OpenCode release**. It only supports:
 
-- OpenCode version: `1.17.18`
-- npm umbrella package: `opencode-ai@1.17.18`
-- npm platform binary: `opencode-linux-arm64@1.17.18`
+- OpenCode version: `1.18.2`
+- npm umbrella package: `opencode-ai@1.18.2`
+- npm platform binary: `opencode-linux-arm64@1.18.2`
 
-The `VERSION` environment variable is intentionally ignored. Setting `VERSION` to anything other than `1.17.18` makes the installer abort. There is no "Change version" option on purpose.
+The `VERSION` environment variable is intentionally ignored. Setting `VERSION` to anything other than `1.18.2` makes the installer abort. There is no "Change version" option on purpose.
 
 ### Why a freeze
 
-OpenCode's ELF patches (interpreter path, file-descriptor wiring, copy target layout) only apply to the exact build of `opencode-linux-arm64@1.17.18` that this repository was validated against. Newer or older builds can have:
+OpenCode's ELF patches (interpreter path, file-descriptor wiring, copy target layout) only apply to the exact build of `opencode-linux-arm64@1.18.2` that this repository was validated against. Newer or older builds can have:
 
 - a different `postinstall.mjs` that no longer selects `opencode-linux-arm64` from inside `opencode-ai`;
 - a different ELF layout (interpreter path, section alignment, dynamic tags);
 - a different glibc requirement;
 - a different placement or naming of the prebuilt binary inside the platform package.
 
-When upstream releases a new version, every patch in this repository has to be re-validated against the new build before this installer can be updated. Until then, the right way to install OpenCode on Termux is to use the build this repository was tested with — `1.17.18` — and to wait for an updated installer before upgrading.
+When upstream releases a new version, every patch in this repository has to be re-validated against the new build before this installer can be updated. Until then, the right way to install OpenCode on Termux is to use the build this repository was tested with — `1.18.2` — and to wait for an updated installer before upgrading.
 
 ## What this installer does
 
@@ -59,12 +59,12 @@ This Termux installer works around that by:
 
 1. Installing required Termux packages.
 2. Removing any previous opencode installation (launcher, ELF binary, npm packages).
-3. Installing `opencode-ai@1.17.18` with `--force --ignore-scripts --os=linux --cpu=arm64`. `--force` bypasses npm's `EBADPLATFORM` check, and `--ignore-scripts` skips the upstream postinstall that looks for `opencode-android-arm64`.
-4. Installing `opencode-linux-arm64@1.17.18` with the same flags. This package contains the actual prebuilt ELF binary.
+3. Installing `opencode-ai@1.18.2` with `--force --ignore-scripts --os=linux --cpu=arm64`. `--force` bypasses npm's `EBADPLATFORM` check, and `--ignore-scripts` skips the upstream postinstall that looks for `opencode-android-arm64`.
+4. Installing `opencode-linux-arm64@1.18.2` with the same flags. This package contains the actual prebuilt ELF binary.
 5. Copying the ELF binary from the platform package into `~/.local/share/opencode/bin/opencode`.
 6. Using `glibc-runner patchelf` to rewrite the ELF interpreter from `/lib/ld-linux-aarch64.so.1` to Termux's glibc loader at `/data/data/com.termux/files/usr/glibc/lib/ld-linux-aarch64.so.1`.
 7. Installing an `opencode` launcher at `/data/data/com.termux/files/usr/bin/opencode` that clears `LD_PRELOAD` / `LD_LIBRARY_PATH` and execs the patched binary.
-8. Running `opencode --version` and confirming that it reports `1.17.18`.
+8. Running `opencode --version` and confirming that it reports `1.18.2`.
 
 ## Requirements
 
@@ -84,7 +84,7 @@ The installer displays an OpenCode-style terminal screen and numbered progress s
 OpenCode for Termux
 Compatibility installer for Android/aarch64
 
-Target version : 1.17.18
+Target version : 1.18.2
 Platform       : opencode-linux-arm64
 Install path   : .../share/opencode/bin/opencode
 Launcher       : .../usr/bin/opencode
@@ -93,12 +93,12 @@ Launcher       : .../usr/bin/opencode
          done: Required Termux packages are installed.
 
 [10/10] Verifying patched installation
-1.17.18
-         done: OpenCode 1.17.18 is installed successfully.
+1.18.2
+         done: OpenCode 1.18.2 is installed successfully.
 
 Installation complete
 
-OpenCode 1.17.18 has been installed.
+OpenCode 1.18.2 has been installed.
 Command: opencode
 Path   : .../usr/bin/opencode
 ```
@@ -126,7 +126,7 @@ Expected output:
 
 ```text
 /data/data/com.termux/files/usr/bin/opencode
-1.17.18
+1.18.2
 ```
 
 You can also confirm the patched ELF interpreter:
@@ -196,7 +196,7 @@ This installer does not support changing versions. The `VERSION` environment var
 3. Update the `VERSION` line in the banner output and the version status section in `README.md` / `README_ko.md`.
 4. Re-run the installer on a clean environment and confirm the same checks documented in `INSTALLATION_DETAILS.md` still pass.
 
-Until that work is done, stick with `1.17.18`.
+Until that work is done, stick with `1.18.2`.
 
 ## Patch details
 
